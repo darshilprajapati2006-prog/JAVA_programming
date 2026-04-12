@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Clash Display", "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Inter", "Segoe UI", sans-serif;
+
+  --color-brand-50: #fbf6ef;
+  --color-brand-100: #f3e6d1;
+  --color-brand-200: #e8d1ad;
+  --color-brand-300: #d6b783;
+  --color-brand-400: #c49b63;
+  --color-brand-500: #b38552;
+  --color-brand-600: #966d42;
+  --color-brand-700: #755334;
+  --color-brand-800: #593f29;
+  --color-brand-900: #3f2d1f;
+
+  --color-ink-50: #f7f4ee;
+  --color-ink-100: #ece6dc;
+  --color-ink-200: #d7cebf;
+  --color-ink-300: #bbb09e;
+  --color-ink-400: #8c8275;
+  --color-ink-500: #6b6b6b;
+  --color-ink-600: #4d473f;
+  --color-ink-700: #322f2b;
+  --color-ink-800: #1f1d1a;
+  --color-ink-900: #111111;
+
+  --color-accent-50: #fbf6ef;
+  --color-accent-100: #f5ead8;
+  --color-accent-200: #e9d0ad;
+  --color-accent-300: #dcb784;
+  --color-accent-400: #c49b63;
+  --color-accent-500: #aa7c42;
+
+  --shadow-soft-xl: 0 36px 90px rgba(17, 17, 17, 0.11);
+  --shadow-soft-lg: 0 20px 44px rgba(17, 17, 17, 0.08);
+  --shadow-soft-md: 0 12px 24px rgba(17, 17, 17, 0.06);
+
+  --radius-5xl: 2rem;
+}
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    @apply m-0 bg-ink-50 font-body text-ink-900 antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(196, 155, 99, 0.18), transparent 28%),
+      radial-gradient(circle at right, rgba(17, 17, 17, 0.06), transparent 30%),
+      linear-gradient(180deg, #fbf8f2 0%, #f7f4ee 100%);
+    background-attachment: fixed;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(196, 155, 99, 0.28);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply m-0 font-display text-ink-900;
+  }
+
+  p {
+    @apply m-0 text-base leading-7 text-ink-500;
+  }
+}
+
+@utility page-shell {
+  @apply min-h-screen px-5 py-10 md:px-8 xl:px-12;
+}
+
+@utility content-wrap {
+  @apply mx-auto w-full max-w-7xl;
+}
+
+@utility surface-card {
+  @apply rounded-[2rem] border border-white/65 bg-white/82 shadow-[var(--shadow-soft-lg)] backdrop-blur-xl;
+}
+
+@utility hero-card {
+  @apply surface-card p-8 md:p-12;
+}
+
+@utility content-card {
+  @apply surface-card p-7 md:p-10;
+}
+
+@utility eyebrow {
+  @apply mb-4 inline-flex rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-brand-700;
+}
+
+@utility page-title {
+  @apply font-display text-4xl leading-none font-semibold tracking-tight md:text-6xl;
+}
+
+@utility page-copy {
+  @apply mt-4 max-w-2xl text-base leading-7 text-ink-500 md:text-lg;
+}
+
+@utility premium-button {
+  @apply inline-flex items-center justify-center rounded-full bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-brand-500;
+}
+
+@utility skeleton-block {
+  @apply animate-pulse rounded-[1.25rem] bg-gradient-to-r from-ink-100 via-white to-ink-100 bg-[length:200%_100%];
+  animation: shimmer 1.8s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
