@@ -1,0 +1,123 @@
+classDiagram
+    direction TB
+
+    class User {
+        <<abstract>>
+        -String id
+        -String name
+        -String email
+        -String password
+        -String department
+        +checkPassword(inputPassword) boolean
+        +getRoleName() String
+        +showBasicProfile() String
+    }
+
+    class Student {
+        -String rollNumber
+        -String admissionNumber
+        -String program
+        -String division
+        -int currentSemester
+        -completedCourses
+        -registeredCourses
+        -grades
+        -complaints
+        -enrollments
+        +addEnrollment()
+        +addComplaint()
+        +getActiveEnrollments()
+        +getCompletedEnrollments()
+    }
+
+    class Professor {
+        -String facultyId
+        -String expertise
+        -assignedCourses
+        -String officeRoom
+        -String officeHours
+        +assignCourse()
+        +removeAssignedCourse()
+    }
+
+    class Administrator {
+        -String adminId
+        -String designation
+        -String fixedPassword
+        +validateFixedPassword(inputPassword) boolean
+    }
+
+    class Course {
+        -String courseCode
+        -String title
+        -String professor
+        -int credits
+        -prerequisites
+        -timings
+        -String location
+        -String syllabus
+        -int enrollmentLimit
+        -enrolledStudents
+        -int semester
+        +addPrerequisite()
+        +addTiming()
+        +addStudent()
+        +removeStudent()
+        +isFull() boolean
+        +displayCourseInfo() String
+    }
+
+    class Enrollment {
+        -String studentId
+        -String courseCode
+        -int semester
+        -String grade
+        -String status
+        +markCompleted(grade)
+        +markDropped()
+        +isCompleted() boolean
+        +isActive() boolean
+    }
+
+    class Complaint {
+        -String complaintId
+        -String studentId
+        -String studentName
+        -String title
+        -String description
+        -String status
+        -String dateRaised
+        -String resolutionNote
+        +markResolved(resolutionDetails)
+        +displayComplaint() String
+    }
+
+    class ScheduleSlot {
+        -String day
+        -String startTime
+        -String endTime
+        -String room
+        -String slotLabel
+        +toDisplayString() String
+    }
+
+    class AdminService {
+        +viewAllCourses()
+        +assignProfessorToCourse(courseCode, professorId)
+        +viewAllStudentRecords()
+        +updateComplaintStatus(complaintId, resolutionDetails)
+    }
+
+    User <|-- Student
+    User <|-- Professor
+    User <|-- Administrator
+
+    Student *-- Enrollment : maintains
+    Student *-- Complaint : submits
+    Course *-- ScheduleSlot : contains
+
+    Student --> Course : registers
+    Professor --> Course : manages
+    Administrator --> Complaint : resolves
+    Administrator --> Student : manages records
+    Administrator --> Course : manages catalog

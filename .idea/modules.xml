@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AP-1.iml" filepath="$PROJECT_DIR$/AP-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AP-2.iml" filepath="$PROJECT_DIR$/AP-2.iml" />
       <module fileurl="file://$PROJECT_DIR$/JAVA programming.iml" filepath="$PROJECT_DIR$/JAVA programming.iml" />
     </modules>
   </component>

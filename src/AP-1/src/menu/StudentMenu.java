@@ -109,12 +109,22 @@ public class StudentMenu {
                     + " | Grade: " + enrollment.getGrade());
         }
 
-        if (studentService.isSemesterComplete(student, student.getCurrentSemester())) {
-            System.out.println("SGPA (current semester): " + studentService.viewSGPA(student, student.getCurrentSemester()));
+        int currentSemester = student.getCurrentSemester();
+        int lastCompletedSemester = studentService.getLastCompletedSemester(student);
+
+        if (lastCompletedSemester > 0) {
+            System.out.println("SGPA (last completed semester - Semester " + lastCompletedSemester + "): "
+                    + studentService.viewSGPA(student, lastCompletedSemester));
+        }
+
+        if (studentService.isSemesterComplete(student, currentSemester)) {
+            System.out.println("SGPA (current semester - Semester " + currentSemester + "): "
+                    + studentService.viewSGPA(student, currentSemester));
         } else {
-            System.out.println("SGPA (current semester): Not available yet.");
-            System.out.println("Semester is incomplete. Pending grade/course completion for:");
-            for (String courseCode : studentService.getIncompleteSemesterCourses(student, student.getCurrentSemester())) {
+            System.out.println("SGPA (current semester - Semester " + currentSemester
+                    + "): Not available yet because the semester is still ongoing.");
+            System.out.println("Pending grade/course completion for:");
+            for (String courseCode : studentService.getIncompleteSemesterCourses(student, currentSemester)) {
                 System.out.println("- " + courseCode);
             }
         }

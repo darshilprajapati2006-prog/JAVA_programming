@@ -103,6 +103,16 @@ public class StudentService {
         return gpaService.getIncompleteSemesterCourses(student, semester);
     }
 
+    public int getLastCompletedSemester(Student student) {
+        int lastCompletedSemester = 0;
+        for (Enrollment enrollment : student.getCompletedEnrollments()) {
+            if (enrollment.getSemester() > lastCompletedSemester) {
+                lastCompletedSemester = enrollment.getSemester();
+            }
+        }
+        return lastCompletedSemester;
+    }
+
     public Complaint submitComplaint(Student student, String title, String description) {
         Complaint complaint = complaintService.createComplaint(student, title, description);
         student.addComplaint(complaint);

@@ -400,6 +400,12 @@ public class SeedData {
         if (professorViewCaseStudent != null) {
             registerSeedCourse(dataStore, professorViewCaseStudent, "EC106");
         }
+
+        Student darshil = dataStore.findStudentById("STU007");
+        if (darshil != null) {
+            darshil.setReportedSgpa(1, 7.70);
+            darshil.setReportedCgpa(7.70);
+        }
     }
 
     private static void seedComplaints(UniversityDataStore dataStore) {
